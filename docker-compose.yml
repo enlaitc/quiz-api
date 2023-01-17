@@ -1,0 +1,20 @@
+version: '3.1'
+
+services:
+
+  db:
+    container_name: pg_quiz_container
+    image: postgres
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    restart: always
+    environment:
+      TZ: "America/Sao_Paulo"
+      POSTGRES_DB: quizdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD:
+    ports:
+      - "5432:5432"
+
+volumes:
+  db-data:
