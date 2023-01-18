@@ -11,7 +11,7 @@ des_user VARCHAR(100),
 int_score INTEGER default 0,
 des_difficult VARCHAR(20) not null,
 time_duration TIME,
-int_questions INTEGER not null,
+int_question INTEGER not null,
 dat_creation DATE not null,
 dat_end DATE,
 
@@ -26,8 +26,8 @@ des_name VARCHAR(20) not NULL
 );
 
 
-create table tb_quiz_questions(
-id_questions SERIAL primary key not null,
+create table tb_quiz_question(
+id_question SERIAL primary key not null,
 id_quiz INTEGER not null,
 des_question VARCHAR(255) not null,
 des_question_type VARCHAR(20) not null,
@@ -50,5 +50,13 @@ des_answer VARCHAR(255) not null,
 boo_status BOOLEAN not null,
 
 foreign key(id_question)
-references tb_quiz_questions(id_questions)
+references tb_quiz_question(id_question)
 );
+
+CREATE TABLE ta_question_category(
+question_id INTEGER NOT NULL,
+category_id INTEGER NOT NULL,
+
+PRIMARY KEY (question_id, category_id),
+FOREIGN KEY (question_id) REFERENCES tb_quiz_question (id_question),
+foreign key (category_id) references tb_quiz_category (id_category));

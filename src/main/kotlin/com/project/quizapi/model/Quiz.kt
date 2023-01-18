@@ -9,11 +9,12 @@ data class Quiz(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var idQuiz: Long,
+    var idQuiz: Long?,
 
     @Column(name = "des_name")
     var name: String,
 
     @Column(name = "dat_creation")
-    var creation: LocalDate
-)
+    var creation: LocalDate,
+
+    )
