@@ -1,7 +1,9 @@
 package com.project.quizapi.model
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.project.quizapi.model.enums.DifficultCategory
 import com.project.quizapi.model.enums.QuestionType
+import com.project.quizapi.model.vo.RequestSaveQuestion
 import jakarta.persistence.*
 import java.time.LocalDateTime
 
@@ -41,6 +43,9 @@ data class Question(
         joinColumns = [JoinColumn(name = "question_id")],
         inverseJoinColumns = [JoinColumn(name = "category_id")]
     )
-    var categories: List<Category>?
+    var categories: List<Category>?,
+
+    @OneToMany(cascade = [CascadeType.ALL], mappedBy = "question")
+    var answers: List<Answer>?
 
     )
