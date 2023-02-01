@@ -55,3 +55,11 @@ category_id INTEGER NOT NULL,
 PRIMARY KEY (question_id, category_id),
 FOREIGN KEY (question_id) REFERENCES tb_quiz_question (id_question),
 foreign key (category_id) references tb_quiz_category (id_category));
+
+create table ta_review_category(
+review_id INTEGER not null,
+category_id INTEGER not NULL,
+
+primary key (review_id, category_id),
+foreign key (review_id) references tb_quiz_review (id_review),
+foreign key (category_id) references tb_quiz_category (id_category));

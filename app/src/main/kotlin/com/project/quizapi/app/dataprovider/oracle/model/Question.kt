@@ -31,13 +31,15 @@ data class Question(
     @Column(name = "dat_update")
     var update: LocalDateTime,
 
-    @ManyToMany(fetch = FetchType.LAZY,
+    @ManyToMany(
+        fetch = FetchType.LAZY,
         cascade = [
-        CascadeType.PERSIST,
-        CascadeType.MERGE,
-        CascadeType.DETACH,
-        CascadeType.REFRESH
-    ])
+            CascadeType.PERSIST,
+            CascadeType.MERGE,
+            CascadeType.DETACH,
+            CascadeType.REFRESH
+        ]
+    )
     @JoinTable(
         name = "ta_question_category",
         joinColumns = [JoinColumn(name = "question_id")],

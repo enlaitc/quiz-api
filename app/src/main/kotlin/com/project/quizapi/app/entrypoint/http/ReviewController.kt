@@ -27,7 +27,8 @@ class ReviewController(val repository: ReviewRepository, val quizRepository: Qui
             duration = LocalTime.now(),
             questions = 10,
             start = LocalDateTime.now(),
-            end = LocalDateTime.now()
+            end = LocalDateTime.now(),
+            categories = review.categories
         )
 
         return repository.save(parseReview);

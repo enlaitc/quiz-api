@@ -3,6 +3,7 @@ package com.project.quizapi.app.entrypoint.http
 import com.project.quizapi.domain.entity.CategoryEntity
 import com.project.quizapi.domain.entity.QuestionEntity
 import com.project.quizapi.domain.entity.QuizEntity
+import com.project.quizapi.domain.entity.ReviewEntity
 import com.project.quizapi.domain.usecase.TesteUseCase
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -36,5 +37,10 @@ class TesteController(val testeUseCase: TesteUseCase) {
     @GetMapping("/question")
     fun buscaTodasQuestoes(): MutableList<QuestionEntity> {
         return testeUseCase.findAllQuestions()
+    }
+
+    @GetMapping("/reviews")
+    fun buscaTodasReviews(): MutableList<ReviewEntity> {
+        return testeUseCase.findAllReviews()
     }
 }

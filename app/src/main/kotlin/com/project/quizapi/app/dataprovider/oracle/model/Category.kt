@@ -25,7 +25,19 @@ data class Category(
             CascadeType.REFRESH
         ]
     )
-    var questions: List<Question>?
+    var questions: List<Question>?,
+
+    @JsonIgnore
+    @ManyToMany(
+        mappedBy = "categories", fetch = FetchType.LAZY,
+        cascade = [
+            CascadeType.PERSIST,
+            CascadeType.MERGE,
+            CascadeType.DETACH,
+            CascadeType.REFRESH
+        ]
+    )
+    var reviews: List<Review>?
 )
 
 fun Category.toEntity(): CategoryEntity {
@@ -33,7 +45,8 @@ fun Category.toEntity(): CategoryEntity {
     return CategoryEntity(
         idCategory = this.idCategory,
         name = this.name,
-        questions = this.questions!!.map { it -> it.toEntity() }
+        questions = this.questions!!.map { it -> it.toEntity() },
+        reviews = this.reviews!!.map { it -> it.toEntity() }
     )
 }
 
@@ -42,7 +55,8 @@ fun Category.toEntity2(): CategoryEntity {
     return CategoryEntity(
         idCategory = this.idCategory,
         name = this.name,
-        questions = null
+        questions = null,
+        reviews = null
     )
 }
 
