@@ -34,6 +34,7 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     // https://mvnrepository.com/artifact/org.postgresql/postgresql
     implementation("org.postgresql:postgresql:42.5.1")
+    implementation(project(":domain"))
 }
 
 tasks.getByName<Test>("test") {
