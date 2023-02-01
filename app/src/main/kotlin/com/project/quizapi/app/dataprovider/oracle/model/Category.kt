@@ -16,7 +16,15 @@ data class Category(
     var name: String,
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "categories")
+    @ManyToMany(
+        mappedBy = "categories", fetch = FetchType.LAZY,
+        cascade = [
+            CascadeType.PERSIST,
+            CascadeType.MERGE,
+            CascadeType.DETACH,
+            CascadeType.REFRESH
+        ]
+    )
     var questions: List<Question>?
 )
 
@@ -25,7 +33,16 @@ fun Category.toEntity(): CategoryEntity {
     return CategoryEntity(
         idCategory = this.idCategory,
         name = this.name,
-        questions = this.questions
+        questions = this.questions!!.map { it -> it.toEntity() }
+    )
+}
+
+fun Category.toEntity2(): CategoryEntity {
+
+    return CategoryEntity(
+        idCategory = this.idCategory,
+        name = this.name,
+        questions = null
     )
 }
 

@@ -2,16 +2,16 @@ package com.project.quizapi.app.entrypoint.http.data
 
 import com.project.quizapi.app.dataprovider.oracle.model.Category
 import com.project.quizapi.app.dataprovider.oracle.model.Question
-import com.project.quizapi.app.dataprovider.oracle.model.DifficultCategory
-import com.project.quizapi.app.dataprovider.oracle.model.QuestionType
 import com.project.quizapi.app.dataprovider.oracle.repository.QuizRepository
+import com.project.quizapi.domain.entity.DifficultCategoryEnum
+import com.project.quizapi.domain.entity.QuestionTypeEnum
 import java.time.LocalDateTime
 
 data class RequestSaveQuestion(
     val idQuiz: Long,
     val question: String,
-    val questionType: QuestionType,
-    val questionDifficult: DifficultCategory,
+    val questionType: QuestionTypeEnum,
+    val questionDifficult: DifficultCategoryEnum,
     val categories: List<Category>
 ) {
 

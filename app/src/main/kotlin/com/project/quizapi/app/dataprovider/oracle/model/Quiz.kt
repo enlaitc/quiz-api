@@ -1,5 +1,6 @@
 package com.project.quizapi.app.dataprovider.oracle.model
 
+import com.project.quizapi.domain.entity.QuizEntity
 import jakarta.persistence.*
 import java.time.LocalDate
 
@@ -18,3 +19,12 @@ data class Quiz(
     var creation: LocalDate,
 
     )
+
+fun Quiz.toEntity(): QuizEntity {
+
+    return QuizEntity(
+        idQuiz = this.idQuiz,
+        name = this.name,
+        creation = this.creation
+    )
+}
