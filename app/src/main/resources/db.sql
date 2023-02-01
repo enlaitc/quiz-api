@@ -32,16 +32,11 @@ id_quiz INTEGER not null,
 des_question VARCHAR(255) not null,
 des_question_type VARCHAR(20) not null,
 des_question_difficult VARCHAR(20) not null,
-id_category INTEGER not null,
 dat_creation DATE not null,
 dat_update DATE,
 
 foreign key(id_quiz)
-references tb_quiz (id_quiz),
-
-foreign key(id_category)
-references tb_quiz_category (id_category)
-);
+references tb_quiz (id_quiz);
 
 create table tb_quiz_answer(
 id_answer SERIAL primary key not null,

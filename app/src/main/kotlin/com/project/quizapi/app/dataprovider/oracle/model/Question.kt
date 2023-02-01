@@ -31,9 +31,6 @@ data class Question(
     @Column(name = "dat_update")
     var update: LocalDateTime,
 
-    @Column(name = "id_category")
-    var category: Long?,
-
     @ManyToMany(fetch = FetchType.LAZY,
         cascade = [
         CascadeType.PERSIST,
@@ -63,7 +60,6 @@ fun Question.toEntity(): QuestionEntity {
         questionDifficult = this.questionDifficult,
         creation = this.creation,
         update = this.update,
-        category = this.category,
         categories = this.categories!!.map { it -> it.toEntity2() },
         answers = this.answers!!.map { it -> it.toEntity() }
     )
