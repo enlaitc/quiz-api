@@ -10,7 +10,7 @@ data class Category(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var idCategory: Long,
+    var idCategory: Long?,
 
     @Column(name = "des_name")
     var name: String,
@@ -57,6 +57,16 @@ fun Category.toEntity2(): CategoryEntity {
         name = this.name,
         questions = null,
         reviews = null
+    )
+}
+
+fun CategoryEntity.toCategory(): Category {
+
+    return Category(
+        idCategory = this.idCategory,
+        name = this.name,
+        questions = this.questions?.map { it.toQuestion() },
+        reviews = this.reviews?.map { it.toReview() }
     )
 }
 

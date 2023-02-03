@@ -19,11 +19,6 @@ class TesteController(val testeUseCase: TesteUseCase) {
         return "Você digitou $param"
     }
 
-    @GetMapping("/usecase")
-    fun teste(): String {
-        return testeUseCase.teste()
-    }
-
     @GetMapping("/category")
     fun buscaTodasCategorias(): MutableList<CategoryEntity> {
         return testeUseCase.findAllCategories()

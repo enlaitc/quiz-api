@@ -66,3 +66,18 @@ fun Question.toEntity(): QuestionEntity {
         answers = this.answers!!.map { it -> it.toEntity() }
     )
 }
+
+fun QuestionEntity.toQuestion(): Question {
+
+    return Question(
+        idQuestion = this.idQuestion,
+        idQuiz = this.idQuiz.toQuiz(),
+        question = this.question,
+        questionType = this.questionType,
+        questionDifficult = this.questionDifficult,
+        creation = this.creation,
+        update = this.update,
+        categories = this.categories!!.map { it -> it.toCategory() },
+        answers = null
+    )
+}

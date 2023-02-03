@@ -12,7 +12,7 @@ data class ReviewEntity(
     var duration: LocalTime,
     var questions: Long,
     var start: LocalDateTime,
-    var end: LocalDateTime,
+    var end: LocalDateTime?,
 
     var categories: List<CategoryEntity>?
 

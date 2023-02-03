@@ -36,12 +36,12 @@ data class Review(
     var start: LocalDateTime,
 
     @Column(name = "dat_end")
-    var end: LocalDateTime,
+    var end: LocalDateTime?,
 
     @ManyToMany(
         fetch = FetchType.LAZY,
         cascade = [
-            CascadeType.PERSIST,
+            //CascadeType.PERSIST,
             CascadeType.MERGE,
             CascadeType.DETACH,
             CascadeType.REFRESH
@@ -68,5 +68,21 @@ fun Review.toEntity(): ReviewEntity {
         start = this.start,
         end = this.end,
         categories = this.categories!!.map { it -> it.toEntity2() }
+    )
+}
+
+fun ReviewEntity.toReview(): Review {
+
+    return Review(
+        idReview = null,
+        idQuiz = this.idQuiz.toQuiz(),
+        user = this.user,
+        score = this.score,
+        difficult = this.difficult,
+        duration = this.duration,
+        questions = this.questions,
+        start = this.start,
+        end = this.end,
+        categories = this.categories!!.map { it -> it.toCategory() }
     )
 }
