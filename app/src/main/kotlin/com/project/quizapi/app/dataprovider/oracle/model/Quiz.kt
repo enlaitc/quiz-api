@@ -28,3 +28,12 @@ fun Quiz.toEntity(): QuizEntity {
         creation = this.creation
     )
 }
+
+fun QuizEntity.toQuiz(): Quiz {
+
+    return Quiz(
+        idQuiz = this.idQuiz,
+        name = this.name,
+        creation = this.creation
+    )
+}

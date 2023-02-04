@@ -23,7 +23,6 @@ data class RequestSaveQuestion(
             question = question,
             questionType = questionType,
             questionDifficult =questionDifficult,
-            category = 1,
             creation = LocalDateTime.now(),
             update = LocalDateTime.now(),
             categories = categories,

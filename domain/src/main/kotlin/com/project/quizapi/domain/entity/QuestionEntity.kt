@@ -10,7 +10,6 @@ data class QuestionEntity(
     var questionDifficult: DifficultCategoryEnum,
     var creation: LocalDateTime,
     var update: LocalDateTime,
-    var category: Long?,
 
     var categories: List<CategoryEntity>?,
 

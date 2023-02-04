@@ -31,16 +31,15 @@ data class Question(
     @Column(name = "dat_update")
     var update: LocalDateTime,
 
-    @Column(name = "id_category")
-    var category: Long?,
-
-    @ManyToMany(fetch = FetchType.LAZY,
+    @ManyToMany(
+        fetch = FetchType.LAZY,
         cascade = [
-        CascadeType.PERSIST,
-        CascadeType.MERGE,
-        CascadeType.DETACH,
-        CascadeType.REFRESH
-    ])
+            CascadeType.PERSIST,
+            CascadeType.MERGE,
+            CascadeType.DETACH,
+            CascadeType.REFRESH
+        ]
+    )
     @JoinTable(
         name = "ta_question_category",
         joinColumns = [JoinColumn(name = "question_id")],
@@ -63,8 +62,22 @@ fun Question.toEntity(): QuestionEntity {
         questionDifficult = this.questionDifficult,
         creation = this.creation,
         update = this.update,
-        category = this.category,
         categories = this.categories!!.map { it -> it.toEntity2() },
         answers = this.answers!!.map { it -> it.toEntity() }
+    )
+}
+
+fun QuestionEntity.toQuestion(): Question {
+
+    return Question(
+        idQuestion = this.idQuestion,
+        idQuiz = this.idQuiz.toQuiz(),
+        question = this.question,
+        questionType = this.questionType,
+        questionDifficult = this.questionDifficult,
+        creation = this.creation,
+        update = this.update,
+        categories = this.categories!!.map { it -> it.toCategory() },
+        answers = null
     )
 }
