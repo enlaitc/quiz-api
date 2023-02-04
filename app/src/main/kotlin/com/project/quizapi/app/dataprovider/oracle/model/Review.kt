@@ -74,7 +74,7 @@ fun Review.toEntity(): ReviewEntity {
 fun ReviewEntity.toReview(): Review {
 
     return Review(
-        idReview = null,
+        idReview = this.idReview,
         idQuiz = this.idQuiz.toQuiz(),
         user = this.user,
         score = this.score,

@@ -6,4 +6,5 @@ interface ReviewDataProvider {
     fun findReviews(): MutableList<ReviewEntity>
     fun findReviewById(idReview: Long): ReviewEntity
     fun saveReview(reviewEntity: ReviewEntity): ReviewEntity
+//    fun updateReview(reviewEntity: ReviewEntity): ReviewEntity
 }

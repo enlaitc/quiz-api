@@ -12,8 +12,8 @@ int_score INTEGER default 0,
 des_difficult VARCHAR(20) not null,
 time_duration TIME,
 int_question INTEGER not null,
-dat_creation DATE not null,
-dat_end DATE,
+dat_creation TIMESTAMP not null,
+dat_end TIMESTAMP,
 
 foreign key(id_quiz)
 references tb_quiz (id_quiz)
