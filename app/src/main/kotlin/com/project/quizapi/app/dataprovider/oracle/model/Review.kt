@@ -3,6 +3,7 @@ package com.project.quizapi.app.dataprovider.oracle.model
 import com.project.quizapi.domain.entity.DifficultCategoryEnum
 import com.project.quizapi.domain.entity.ReviewEntity
 import jakarta.persistence.*
+import org.hibernate.Hibernate
 import java.time.LocalDateTime
 import java.time.LocalTime
 
@@ -53,7 +54,22 @@ data class Review(
         inverseJoinColumns = [JoinColumn(name = "category_id")]
     )
     var categories: List<Category>?
-)
+) {
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other == null || Hibernate.getClass(this) != Hibernate.getClass(other)) return false
+        other as Review
+
+        return idReview != null && idReview == other.idReview
+    }
+
+    override fun hashCode(): Int = javaClass.hashCode()
+
+    @Override
+    override fun toString(): String {
+        return this::class.simpleName + "(idReview = $idReview , idQuiz = $idQuiz , user = $user , score = $score , difficult = $difficult , duration = $duration , questions = $questions , start = $start , end = $end )"
+    }
+}
 
 fun Review.toEntity(): ReviewEntity {
 

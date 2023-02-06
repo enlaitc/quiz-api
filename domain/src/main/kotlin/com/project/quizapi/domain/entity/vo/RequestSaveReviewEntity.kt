@@ -7,5 +7,5 @@ data class RequestSaveReviewEntity(
     val user: String,
     val difficult: DifficultCategoryEnum,
     val questions: Long,
-    val categories: List<Long>?
+    val categories: List<Long>
 )

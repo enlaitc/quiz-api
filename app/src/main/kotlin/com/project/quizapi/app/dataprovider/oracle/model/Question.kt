@@ -34,7 +34,7 @@ data class Question(
     @ManyToMany(
         fetch = FetchType.LAZY,
         cascade = [
-            CascadeType.PERSIST,
+//            CascadeType.PERSIST,
             CascadeType.MERGE,
             CascadeType.DETACH,
             CascadeType.REFRESH
