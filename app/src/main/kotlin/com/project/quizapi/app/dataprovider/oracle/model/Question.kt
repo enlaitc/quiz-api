@@ -29,7 +29,7 @@ data class Question(
     var creation: LocalDateTime,
 
     @Column(name = "dat_update")
-    var update: LocalDateTime,
+    var update: LocalDateTime?,
 
     @ManyToMany(
         fetch = FetchType.LAZY,
@@ -63,7 +63,7 @@ fun Question.toEntity(): QuestionEntity {
         creation = this.creation,
         update = this.update,
         categories = this.categories!!.map { it -> it.toEntity2() },
-        answers = this.answers!!.map { it -> it.toEntity() }
+        answers = this.answers?.map { it -> it.toEntity() }
     )
 }
 

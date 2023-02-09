@@ -9,7 +9,7 @@ data class QuestionEntity(
     var questionType: QuestionTypeEnum,
     var questionDifficult: DifficultCategoryEnum,
     var creation: LocalDateTime,
-    var update: LocalDateTime,
+    var update: LocalDateTime?,
 
     var categories: List<CategoryEntity>?,
 
