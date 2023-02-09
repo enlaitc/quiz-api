@@ -27,7 +27,7 @@ class ReviewUseCase(
             user = requestSaveReview.user,
             score = 0,
             difficult = requestSaveReview.difficult,
-            duration = LocalTime.now(),
+            duration = LocalDateTime.now(),
             questions = requestSaveReview.questions,
             start = LocalDateTime.now(),
             end = null,
@@ -40,7 +40,9 @@ class ReviewUseCase(
     fun endQuizUpdateReview(requestUpdateReview: RequestUpdateReviewEntity): ReviewEntity {
         val review = findReviewById(requestUpdateReview.idReview)
 
-        val calcDuration = review.duration.minus(Duration.between(review.duration, LocalTime.now()))
+        val calcDuration = Duration.between(review.duration, LocalDateTime.now())
+        val localTimeDuration = LocalTime.of(calcDuration.toHoursPart(),calcDuration.toMinutesPart(),calcDuration.toSecondsPart())
+        val duration = LocalDateTime.of(review.duration.toLocalDate(),localTimeDuration)
 
         val entity = ReviewEntity(
             idReview = review.idReview,
@@ -48,7 +50,7 @@ class ReviewUseCase(
             user = review.user,
             score = requestUpdateReview.score,
             difficult = review.difficult,
-            duration = calcDuration,
+            duration = duration,
             questions = review.questions,
             start = review.start,
             end = LocalDateTime.now(),
