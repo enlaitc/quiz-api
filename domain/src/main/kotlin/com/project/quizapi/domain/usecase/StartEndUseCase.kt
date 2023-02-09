@@ -2,7 +2,9 @@ package com.project.quizapi.domain.usecase
 
 import com.project.quizapi.domain.entity.DifficultCategoryEnum
 import com.project.quizapi.domain.entity.QuestionEntity
+import com.project.quizapi.domain.entity.ReviewEntity
 import com.project.quizapi.domain.entity.vo.RequestSaveReviewEntity
+import com.project.quizapi.domain.entity.vo.RequestUpdateReviewEntity
 import com.project.quizapi.domain.entity.vo.ResponseQuestion
 import org.springframework.stereotype.Service
 
@@ -30,6 +32,10 @@ class StartEndUseCase(
             }
             .shuffled()
             .toMutableList()
+    }
+
+    fun endQuiz(requestUpdateReview: RequestUpdateReviewEntity): ReviewEntity{
+        return reviewUseCase.endQuizUpdateReview(requestUpdateReview)
     }
 
     private fun transform(
