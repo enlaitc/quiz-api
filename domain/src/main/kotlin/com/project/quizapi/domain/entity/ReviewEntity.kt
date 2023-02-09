@@ -1,7 +1,6 @@
 package com.project.quizapi.domain.entity
 
 import java.time.LocalDateTime
-import java.time.LocalTime
 
 data class ReviewEntity(
     var idReview: Long?,
@@ -9,7 +8,7 @@ data class ReviewEntity(
     var user: String,
     var score: Long,
     var difficult: DifficultCategoryEnum,
-    var duration: LocalTime,
+    var duration: LocalDateTime,
     var questions: Long,
     var start: LocalDateTime,
     var end: LocalDateTime?,

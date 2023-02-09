@@ -5,7 +5,6 @@ import com.project.quizapi.domain.entity.ReviewEntity
 import jakarta.persistence.*
 import org.hibernate.Hibernate
 import java.time.LocalDateTime
-import java.time.LocalTime
 
 @Entity
 @Table(name = "tb_quiz_review")
@@ -28,7 +27,7 @@ data class Review(
     var difficult: DifficultCategoryEnum,
 
     @Column(name = "time_duration")
-    var duration: LocalTime,
+    var duration: LocalDateTime,
 
     @Column(name = "int_questions")
     var questions: Long,
