@@ -1,9 +1,6 @@
 package com.project.quizapi.app.entrypoint.http
 
-import com.project.quizapi.app.dataprovider.oracle.model.Question
-import com.project.quizapi.app.entrypoint.http.data.RequestSaveQuestion
-import com.project.quizapi.app.dataprovider.oracle.repository.QuestionRepository
-import com.project.quizapi.app.dataprovider.oracle.repository.QuizRepository
+import com.project.quizapi.domain.entity.vo.RequestSaveQuestionEntity
 import com.project.quizapi.domain.entity.QuestionEntity
 import com.project.quizapi.domain.usecase.QuestionUseCase
 import org.springframework.web.bind.annotation.GetMapping
@@ -15,18 +12,16 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/question")
-class QuestionController(val repository: QuestionRepository, val quizRepository: QuizRepository, val questionUseCase: QuestionUseCase) {
+class QuestionController(val questionUseCase: QuestionUseCase) {
 
     @PostMapping
-    fun saveQuestion(@RequestBody question: RequestSaveQuestion): Question {
-
-        val parseQuestion = question.converter(quizRepository);
-        return repository.save(parseQuestion)
+    fun saveQuestion(@RequestBody question: RequestSaveQuestionEntity): QuestionEntity {
+        return questionUseCase.saveQuestion(question)
     }
 
     @GetMapping("/id/{questionId}")
-    fun getQuestion(@PathVariable questionId: Long): Question {
-        return repository.findById(questionId).get();
+    fun getQuestion(@PathVariable questionId: Long): QuestionEntity {
+        return questionUseCase.findQuestionById(questionId)
     }
 
     @GetMapping("/categoriesId/{categoriesId}")

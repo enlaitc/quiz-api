@@ -2,7 +2,7 @@ package com.project.quizapi.app.dataprovider.oracle.model
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.project.quizapi.domain.entity.AnswerEntity
-import com.project.quizapi.domain.entity.QuestionEntity
+import com.project.quizapi.domain.entity.vo.SaveAnswerEntity
 import jakarta.persistence.*
 
 @Entity
@@ -29,7 +29,17 @@ fun Answer.toEntity(): AnswerEntity {
 
     return AnswerEntity(
         idAnswer = this.idAnswer,
-        question = this.question.idQuestion!!,
+        idQuestion = this.question.idQuestion!!,
+        answer = this.answer,
+        status = this.status
+    )
+}
+
+fun SaveAnswerEntity.toAnswer(): Answer {
+
+    return Answer(
+        idAnswer = this.idAnswer,
+        question = this.question.toQuestion(),
         answer = this.answer,
         status = this.status
     )
