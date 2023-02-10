@@ -8,6 +8,7 @@ import com.project.quizapi.app.dataprovider.oracle.repository.QuestionRepository
 import com.project.quizapi.domain.dataprovider.QuestionDataProvider
 import com.project.quizapi.domain.entity.CategoryEntity
 import com.project.quizapi.domain.entity.QuestionEntity
+import jakarta.persistence.EntityNotFoundException
 import org.springframework.stereotype.Component
 
 @Component
@@ -22,7 +23,11 @@ class QuestionPostgresProvider(private val repository: QuestionRepository) : Que
         val listCategories = categories.map { it.toCategory() }
 
         val listQuestions = mutableListOf<Question>()
-        listCategories.forEach { category -> repository.findByCategories(category).forEach { listQuestions.add(it) } }
+        listCategories.forEach { category ->
+            repository.findByCategories(category).forEach { question ->
+                listQuestions.add(question)
+            }
+        }
 
         return listQuestions.map { it.toEntity() }
             .distinctBy { it.idQuestion }
@@ -30,7 +35,9 @@ class QuestionPostgresProvider(private val repository: QuestionRepository) : Que
     }
 
     override fun findQuestionById(questionId: Long): QuestionEntity {
-        return repository.findById(questionId).get().toEntity()
+        val question = repository.findById(questionId)
+        if (question.isEmpty) throw EntityNotFoundException("Question not found")
+        return question.get().toEntity()
     }
 
     override fun saveQuestion(questionEntity: QuestionEntity): QuestionEntity {
