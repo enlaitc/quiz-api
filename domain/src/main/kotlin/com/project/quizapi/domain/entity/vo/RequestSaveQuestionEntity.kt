@@ -8,5 +8,5 @@ data class RequestSaveQuestionEntity(
     val question: String,
     val questionType: QuestionTypeEnum,
     val questionDifficult: DifficultCategoryEnum,
-    val categories: List<Long>
+    val categoriesId: List<Long>
 )
