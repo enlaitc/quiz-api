@@ -16,7 +16,7 @@ class StartEndUseCase(
 
     fun startQuiz(requestSaveReview: RequestSaveReviewEntity): MutableList<ResponseQuestion> {
         val idReview = reviewUseCase.startQuizSaveReview(requestSaveReview).idReview
-        val questions = questionUseCase.findQuestionByCategories(requestSaveReview.categories)
+        val questions = questionUseCase.findQuestionByCategories(requestSaveReview.categoriesId)
         val questionsResponse = transform(questions, requestSaveReview)
 
         return questionsResponse

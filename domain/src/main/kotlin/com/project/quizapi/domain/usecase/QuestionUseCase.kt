@@ -32,7 +32,7 @@ class QuestionUseCase(
             questionDifficult = requestQuestion.questionDifficult,
             creation = LocalDateTime.now(),
             update = null,
-            categories = requestQuestion.categories.map { categoryUseCase.findCategoryById(it) },
+            categories = requestQuestion.categoriesId.map { categoryUseCase.findCategoryById(it) },
             answers = null
         )
 

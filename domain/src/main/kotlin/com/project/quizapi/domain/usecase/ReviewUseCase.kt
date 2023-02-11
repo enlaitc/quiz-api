@@ -31,7 +31,7 @@ class ReviewUseCase(
             questions = requestSaveReview.questions,
             start = LocalDateTime.now(),
             end = null,
-            categories = requestSaveReview.categories.map { it -> categoryUseCase.findCategoryById(it) }
+            categories = requestSaveReview.categoriesId.map { it -> categoryUseCase.findCategoryById(it) }
         )
 
         return reviewDataProvider.saveReview(entity)
