@@ -12,4 +12,15 @@ class CategoryUseCase(
     fun findCategoryById(idCategory: Long): CategoryEntity{
         return categoryDataProvider.findCategoryById(idCategory)
     }
+
+    fun saveCategory(name: String): CategoryEntity{
+        val categoryEntity = CategoryEntity(
+            idCategory = null,
+            name = name,
+            questions = null,
+            reviews = null
+        )
+
+        return categoryDataProvider.saveCategory(categoryEntity)
+    }
 }
