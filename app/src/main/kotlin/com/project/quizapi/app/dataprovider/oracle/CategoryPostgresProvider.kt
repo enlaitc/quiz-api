@@ -1,5 +1,8 @@
 package com.project.quizapi.app.dataprovider.oracle
 
+import com.project.quizapi.app.dataprovider.oracle.model.Category
+import com.project.quizapi.app.dataprovider.oracle.model.toCategory
+import com.project.quizapi.app.dataprovider.oracle.model.toEntity
 import com.project.quizapi.app.dataprovider.oracle.model.toEntity2
 import com.project.quizapi.app.dataprovider.oracle.repository.CategoryRepository
 import com.project.quizapi.domain.dataprovider.CategoryDataProvider
@@ -20,5 +23,9 @@ class CategoryPostgresProvider(private val repository: CategoryRepository): Cate
         val category = repository.findById(idCategory)
         if(category.isEmpty) throw EntityNotFoundException("Category not found")
         return category.get().toEntity2()
+    }
+
+    override fun saveCategory(categoryEntity: CategoryEntity): CategoryEntity {
+        return repository.save(categoryEntity.toCategory()).toEntity2()
     }
 }
