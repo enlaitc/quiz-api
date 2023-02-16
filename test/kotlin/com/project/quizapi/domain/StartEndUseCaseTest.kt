@@ -1,9 +1,7 @@
 package com.project.quizapi.domain
 
 import com.project.quizapi.domain.entity.*
-import com.project.quizapi.domain.entity.vo.RequestSaveReviewEntity
-import com.project.quizapi.domain.entity.vo.RequestUpdateReviewEntity
-import com.project.quizapi.domain.entity.vo.ResponseQuestion
+import com.project.quizapi.domain.entity.vo.*
 import com.project.quizapi.domain.usecase.QuestionUseCase
 import com.project.quizapi.domain.usecase.ReviewUseCase
 import com.project.quizapi.domain.usecase.StartEndUseCase
@@ -46,12 +44,17 @@ class StartEndUseCaseTest {
         val idReview = 1L
         val questions = mutableListOf(creator.questionEntityGenerico())
         val responseQuestion = mutableListOf(
-            ResponseQuestion(
+            ResponseQuestionEntity(
                 1,
                 "question",
                 QuestionTypeEnum.ALTERNATIVA,
                 requestSaveReview.difficult,
-                listOf(creator.categoryEntityGenerico()),
+                listOf(
+                    ResponseCategoryEntity(
+                        1,
+                        "categoria"
+                    )
+                ),
                 null
             )
         )
@@ -73,15 +76,20 @@ class StartEndUseCaseTest {
             1,
             10
         )
-        val reviewReturn = creator.reviewEntityGenerico()
-        reviewReturn.score = requestUpdateReview.score
-        reviewReturn.end = LocalDateTime.now()
+        val review = creator.reviewEntityGenerico()
+        review.score = requestUpdateReview.score
 
-        every { reviewUseCase.endQuizUpdateReview(requestUpdateReview) } returns reviewReturn
+        val responseReviewReturn = creator.responseReviewEntityGenerico()
+        responseReviewReturn.score = requestUpdateReview.score
+        responseReviewReturn.duration = review.duration.toLocalTime()
+        responseReviewReturn.start = review.start
+        responseReviewReturn.end = review.end!!
+
+        every { reviewUseCase.endQuizUpdateReview(requestUpdateReview) } returns review
 
         val result = useCase.endQuiz(requestUpdateReview)
 
-        Assertions.assertEquals(result, reviewReturn)
+        Assertions.assertEquals(result, responseReviewReturn)
         verify(exactly = 1) { reviewUseCase.endQuizUpdateReview(requestUpdateReview) }
     }
 }

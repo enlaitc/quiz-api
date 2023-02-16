@@ -1,8 +1,11 @@
 package com.project.quizapi.util
 
 import com.project.quizapi.domain.entity.*
+import com.project.quizapi.domain.entity.vo.ResponseCategoryEntity
+import com.project.quizapi.domain.entity.vo.ResponseReviewEntity
 import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.LocalTime
 
 class Creator {
 
@@ -47,8 +50,23 @@ class Creator {
             LocalDateTime.now(),
             10L,
             LocalDateTime.now(),
-            null,
+            LocalDateTime.now(),
             listOf( categoryEntityGenerico() )
+        )
+    }
+
+    fun responseReviewEntityGenerico(): ResponseReviewEntity{
+        return ResponseReviewEntity(
+            1,
+            "quiz",
+            "user",
+            0,
+            DifficultCategoryEnum.NORMAL,
+            LocalTime.now(),
+            10L,
+            LocalDateTime.now(),
+            LocalDateTime.now(),
+            listOf( ResponseCategoryEntity(1,"categoria") )
         )
     }
 }
