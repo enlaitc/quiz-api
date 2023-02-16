@@ -19,6 +19,7 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import java.time.LocalDateTime
+import java.util.*
 
 @ExtendWith(MockKExtension::class)
 class ReviewUseCaseTest {
@@ -39,7 +40,7 @@ class ReviewUseCaseTest {
 
     @Test
     @DisplayName("Start quiz save review salva e retorna uma ReviewEntity se sucesso")
-    fun startQuizSaveReview() {
+    fun startQuizSaveReview_Success() {
         val requestSaveReview = RequestSaveReviewEntity(
             "user",
             DifficultCategoryEnum.NORMAL,
@@ -75,7 +76,7 @@ class ReviewUseCaseTest {
 
     @Test
     @DisplayName("End Quiz Update Review atualiza e retorna Review Entity se sucesso")
-    fun endQuizUpdateReview() {
+    fun endQuizUpdateReview_Success() {
         val requestUpdateReview = RequestUpdateReviewEntity(
             1,
             10
@@ -106,7 +107,7 @@ class ReviewUseCaseTest {
 
     @Test
     @DisplayName("Find Review By Id retorna Review Entity passando um id se sucesso")
-    fun findReviewById(){
+    fun findReviewById_Success() {
         val idReview = 1L
         val reviewReturn = creator.reviewEntityGenerico()
 
@@ -114,8 +115,8 @@ class ReviewUseCaseTest {
 
         val result = reviewUseCase.findReviewById(idReview)
 
-        Assertions.assertEquals(reviewReturn,result)
+        Assertions.assertEquals(reviewReturn, result)
         verify(exactly = 1) { reviewUseCase.findReviewById(idReview) }
-     }
+    }
 
 }
