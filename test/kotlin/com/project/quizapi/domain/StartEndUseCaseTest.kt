@@ -36,7 +36,7 @@ class StartEndUseCaseTest {
 
     @Test
     @DisplayName("Start Quiz retorna mutable list de responseQuestion se sucesso")
-    fun startQuiz() {
+    fun startQuiz_Success() {
         val requestSaveReview = RequestSaveReviewEntity(
             "user",
             DifficultCategoryEnum.NORMAL,
@@ -68,7 +68,7 @@ class StartEndUseCaseTest {
 
     @Test
     @DisplayName("End Quiz retorna ReviewEntity se sucesso")
-    fun endQuiz() {
+    fun endQuiz_Success() {
         val requestUpdateReview = RequestUpdateReviewEntity(
             1,
             10
