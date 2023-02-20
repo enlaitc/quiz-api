@@ -31,7 +31,7 @@ class QuestionController(val questionUseCase: QuestionUseCase) {
 
     @Operation(summary = "Find Questions by category.")
     @GetMapping("/categoriesId/{categoriesId}")
-    fun findQuestionsByCategory(@PathVariable categoriesId: List<Long>): MutableList<QuestionEntity>{
+    fun findQuestionsByCategory(@PathVariable categoriesId: List<Long>): List<QuestionEntity>{
         return questionUseCase.findQuestionByCategories(categoriesId)
     }
 }

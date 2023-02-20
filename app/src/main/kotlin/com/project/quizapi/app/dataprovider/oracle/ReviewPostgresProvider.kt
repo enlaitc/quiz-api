@@ -10,12 +10,6 @@ import org.springframework.stereotype.Component
 
 @Component
 class ReviewPostgresProvider(private val repository: ReviewRepository) : ReviewDataProvider {
-    override fun findReviews(): MutableList<ReviewEntity> {
-        val reviewList = repository.findAll().map { it -> it.toEntity() }
-
-        return reviewList.toMutableList()
-    }
-
     override fun findReviewById(idReview: Long): ReviewEntity {
         val review = repository.findById(idReview)
         if(review.isEmpty) throw EntityNotFoundException("Review not found")
