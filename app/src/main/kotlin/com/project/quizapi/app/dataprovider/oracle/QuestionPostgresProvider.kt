@@ -1,6 +1,5 @@
 package com.project.quizapi.app.dataprovider.oracle
 
-import com.project.quizapi.app.dataprovider.oracle.model.Question
 import com.project.quizapi.app.dataprovider.oracle.model.toCategory
 import com.project.quizapi.app.dataprovider.oracle.model.toEntity
 import com.project.quizapi.app.dataprovider.oracle.model.toQuestion
@@ -15,23 +14,18 @@ import org.springframework.stereotype.Component
 class QuestionPostgresProvider(private val repository: QuestionRepository) : QuestionDataProvider {
     override fun findQuestions(): MutableList<QuestionEntity> {
         val listQuestions = repository.findAll().map { it -> it.toEntity() }
-
         return listQuestions.toMutableList()
     }
 
     override fun findQuestionsByCategories(categories: List<CategoryEntity>): MutableList<QuestionEntity> {
         val listCategories = categories.map { it.toCategory() }
 
-        val listQuestions = mutableListOf<Question>()
-        listCategories.forEach { category ->
-            repository.findByCategories(category).forEach { question ->
-                listQuestions.add(question)
-            }
+        val listQuestions = listCategories.map { category ->
+            repository.findByCategories(category) }[0].map { question ->
+            question.toEntity()
         }
 
-        return listQuestions.map { it.toEntity() }
-            .distinctBy { it.idQuestion }
-            .toMutableList()
+        return listQuestions.toMutableList()
     }
 
     override fun findQuestionById(questionId: Long): QuestionEntity {

@@ -13,10 +13,10 @@ class QuestionUseCase(
     private val quizUseCase: QuizUseCase
 ) {
 
-    fun findQuestionByCategories(categoriesId: List<Long>): MutableList<QuestionEntity>{
+    fun findQuestionByCategories(categoriesId: List<Long>): List<QuestionEntity>{
         val listCategories = categoriesId.map { categoryUseCase.findCategoryById(it) }
-
         return questionDataProvider.findQuestionsByCategories(listCategories)
+            .distinctBy { it.idQuestion }
     }
 
     fun findQuestionById(questionId: Long): QuestionEntity{
