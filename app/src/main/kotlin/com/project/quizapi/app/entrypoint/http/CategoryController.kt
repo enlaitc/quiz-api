@@ -1,9 +1,11 @@
 package com.project.quizapi.app.entrypoint.http
 
 import com.project.quizapi.domain.entity.CategoryEntity
+import com.project.quizapi.domain.entity.vo.ResponseCategoryEntity
 import com.project.quizapi.domain.usecase.CategoryUseCase
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -19,5 +21,11 @@ class CategoryController(
     @PostMapping
     fun saveCategory(name: String): CategoryEntity{
         return categoryUseCase.saveCategory(name)
+    }
+
+    @Operation(summary = "Find all categories.")
+    @GetMapping("/all")
+    fun findAllCategories(): List<ResponseCategoryEntity> {
+        return categoryUseCase.findAllCategories()
     }
 }

@@ -2,6 +2,7 @@ package com.project.quizapi.app.dataprovider.oracle.model
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.project.quizapi.domain.entity.CategoryEntity
+import com.project.quizapi.domain.entity.vo.ResponseCategoryEntity
 import jakarta.persistence.*
 
 @Entity
@@ -57,6 +58,14 @@ fun Category.toEntity2(): CategoryEntity {
         name = this.name,
         questions = null,
         reviews = null
+    )
+}
+
+fun Category.toResponseEntity(): ResponseCategoryEntity {
+
+    return ResponseCategoryEntity(
+        idCategory = this.idCategory!!,
+        nameCategory = this.name,
     )
 }
 
