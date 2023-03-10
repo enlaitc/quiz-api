@@ -1,6 +1,7 @@
 package com.project.quizapi.app.dataprovider.oracle.model
 
 import com.project.quizapi.domain.entity.*
+import com.project.quizapi.domain.entity.DifficultCategoryEnum
 import jakarta.persistence.*
 import java.time.LocalDateTime
 
