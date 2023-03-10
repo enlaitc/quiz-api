@@ -5,6 +5,6 @@ import com.project.quizapi.domain.entity.DifficultCategoryEnum
 data class RequestSaveReviewEntity(
     val user: String,
     val difficult: DifficultCategoryEnum,
-    val questions: Long,
+    val qtQuestions: Long,
     val categoriesId: List<Long>
 )

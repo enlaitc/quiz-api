@@ -28,7 +28,7 @@ class ReviewUseCase(
             score = 0,
             difficult = requestSaveReview.difficult,
             duration = LocalDateTime.now(),
-            questions = requestSaveReview.questions,
+            questions = requestSaveReview.qtQuestions,
             start = LocalDateTime.now(),
             end = null,
             categories = requestSaveReview.categoriesId.map { it -> categoryUseCase.findCategoryById(it) }

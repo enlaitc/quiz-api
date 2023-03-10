@@ -2,7 +2,6 @@ package com.project.quizapi.domain.usecase
 
 import com.project.quizapi.domain.entity.DifficultCategoryEnum
 import com.project.quizapi.domain.entity.QuestionEntity
-import com.project.quizapi.domain.entity.ReviewEntity
 import com.project.quizapi.domain.entity.vo.*
 import org.springframework.stereotype.Service
 
@@ -63,18 +62,18 @@ class StartEndUseCase(
     }
 
     private fun transform(
-        questions: MutableList<QuestionEntity>, requestSaveReview: RequestSaveReviewEntity
+        questions: List<QuestionEntity>, requestSaveReview: RequestSaveReviewEntity
     ): MutableList<QuestionEntity> {
-        val questionsNormal =
+        val normalQuestions =
             questions.filter { question -> question.questionDifficult == DifficultCategoryEnum.NORMAL }.asSequence()
                 .shuffled()
-                .take((requestSaveReview.difficult.percentNormal * requestSaveReview.questions / 100).toInt())
+                .take((requestSaveReview.difficult.percentNormal * requestSaveReview.qtQuestions / 100).toInt())
 
-        val questionsDificil =
+        val dificilQuestions =
             questions.filter { question -> question.questionDifficult == DifficultCategoryEnum.DIFICIL }.asSequence()
                 .shuffled()
-                .take((requestSaveReview.difficult.percentDificil * requestSaveReview.questions / 100).toInt())
+                .take((requestSaveReview.difficult.percentDificil * requestSaveReview.qtQuestions / 100).toInt())
 
-        return (questionsNormal + questionsDificil).toMutableList()
+        return (normalQuestions + dificilQuestions).toMutableList()
     }
 }
