@@ -3,6 +3,7 @@ package com.project.quizapi.util
 import com.project.quizapi.domain.entity.*
 import com.project.quizapi.domain.entity.vo.ResponseCategoryEntity
 import com.project.quizapi.domain.entity.vo.ResponseReviewEntity
+import com.project.quizapi.domain.entity.DifficultCategoryEnum
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime

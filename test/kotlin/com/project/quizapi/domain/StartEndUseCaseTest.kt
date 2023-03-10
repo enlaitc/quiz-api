@@ -2,6 +2,7 @@ package com.project.quizapi.domain
 
 import com.project.quizapi.domain.entity.*
 import com.project.quizapi.domain.entity.vo.*
+import com.project.quizapi.domain.entity.DifficultCategoryEnum
 import com.project.quizapi.domain.usecase.QuestionUseCase
 import com.project.quizapi.domain.usecase.ReviewUseCase
 import com.project.quizapi.domain.usecase.StartEndUseCase
@@ -15,7 +16,6 @@ import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
-import java.time.LocalDateTime
 
 @ExtendWith(MockKExtension::class)
 class StartEndUseCaseTest {

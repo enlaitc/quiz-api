@@ -56,7 +56,7 @@ class ReviewUseCaseTest {
             0,
             requestSaveReview.difficult,
             LocalDateTime.now(),
-            requestSaveReview.questions,
+            requestSaveReview.qtQuestions,
             LocalDateTime.now(),
             null,
             listCategory
