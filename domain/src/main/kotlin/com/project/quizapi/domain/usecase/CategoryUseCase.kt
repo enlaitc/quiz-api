@@ -2,6 +2,7 @@ package com.project.quizapi.domain.usecase
 
 import com.project.quizapi.domain.dataprovider.CategoryDataProvider
 import com.project.quizapi.domain.entity.CategoryEntity
+import com.project.quizapi.domain.entity.vo.ResponseCategoryEntity
 import org.springframework.stereotype.Service
 
 @Service
@@ -22,5 +23,9 @@ class CategoryUseCase(
         )
 
         return categoryDataProvider.saveCategory(categoryEntity)
+    }
+
+    fun findAllCategories(): List<ResponseCategoryEntity>{
+        return categoryDataProvider.findCategories()
     }
 }
